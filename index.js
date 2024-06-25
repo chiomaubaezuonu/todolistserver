@@ -9,8 +9,17 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 
-mongoose.connect('mongodb://127.0.0.1:27017/todolist')
-// mongoose.connect('mongodb://localhost:27017/todolist')
+const mongoURI = 'mongodb://localhost:27017/todolist';
+const port = process.env.PORT || 3001;
+// mongoose.connect('mongodb://127.0.0.1:27017/todolist')
+
+
+// const MONGO_URI = process.env.MONGO_URI; // Access environment variable
+// Connect to MongoDB (basic error handling)
+mongoose.connect(mongoURI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
 // get request
 app.get('/get', (req, res) => {
 TodoModel.find()
