@@ -13,13 +13,13 @@ app.use(express.json())
 // let uri = "mongodb+srv:chiomaubaezuonu102:testtodo@cluster0.3vf3ykq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 
-const MONGO_URI = process.env.MONGO_URI; // Access environment variable
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+const MONGO_URI = process.env.MONGO_URI; // Access environment variable (assuming you have dotenv configured)
+
+mongoose.connect(MONGO_URI)
   .then(() => console.log('MongoDB connected successfully.'))
   .catch(err => console.error(err));
+
+  
 
 // mongoose.connect(uri)
 
