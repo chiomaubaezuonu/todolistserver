@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const TodoModel = require('./Model/TodoModel')
+require('dotenv').config();
 
 
 
@@ -9,7 +10,19 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 
-mongoose.connect('mongodb://127.0.0.1:27017/todolist')
+// let uri = "mongodb+srv:chiomaubaezuonu102:testtodo@cluster0.3vf3ykq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+
+const MONGO_URI = process.env.MONGO_URI; // Access environment variable
+
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => console.log('MongoDB connected successfully.'))
+  .catch(err => console.error(err));
+
+// mongoose.connect(uri)
 
 // get request
 app.get('/get', (req, res) => {
