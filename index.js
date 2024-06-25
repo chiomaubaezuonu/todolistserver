@@ -14,7 +14,6 @@ app.use(express.json())
 
 
 const MONGO_URI = process.env.MONGO_URI; // Access environment variable
-
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
