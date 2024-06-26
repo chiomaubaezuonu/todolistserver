@@ -21,13 +21,7 @@ const MONGO_URI = process.env.MONGO_URI; // Access environment variable (assumin
 //   tls: true,
 // })
 
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    // ... other options
-    tls:  false, // Adjust based on security requirements
-      secureProtocol: 'TLSv1_2_method' // Enforce TLS 1.2
-    
-  })
+mongoose.connect(MONGO_URI)
   .then(() => console.log('MongoDB connected successfully.'))
   .catch(err => console.error(err));
 
