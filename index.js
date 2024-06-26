@@ -22,14 +22,14 @@ mongoose.connect(MONGO_URI)
  
 
 // get request
-app.get('/get', (req, res) => {
+app.get('/todos', (req, res) => {
 TodoModel.find()
 .then(result => res.json(result))
 .catch(err=> res.json(err))
 })
 
 //update request
-app.put('/put/:id', (req,res) => {
+app.put('/todos/:id', (req,res) => {
    const  {id} = req.params;
      TodoModel.findByIdAndUpdate({_id : id}, {done: true})
      .then(result => res.json(result))
@@ -37,7 +37,7 @@ app.put('/put/:id', (req,res) => {
 })
 
 //for delete request
-app.delete('/delete/:id', (req,res) => {
+app.delete('/todos/:id', (req,res) => {
     const {id} = req.params;
     TodoModel.findByIdAndDelete({_id: id})
     .then(result => res.json(result))
@@ -48,7 +48,7 @@ app.delete('/delete/:id', (req,res) => {
 
 
 // for post request
-app.post('/add', (req, res) => {
+app.post('/todos', (req, res) => {
     const task = req.body.task;
     TodoModel.create({
         task: task
